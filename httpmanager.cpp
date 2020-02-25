@@ -1,10 +1,11 @@
 #include "httpmanager.h"
+#include <iostream>
 
 httpManager::httpManager(QObject *parent) : QObject(parent),
     imageDownloadManager(new QNetworkAccessManager)
 {
     connect(imageDownloadManager, SIGNAL(finished(QNetworkReply*)),
-            this, SLOT(ImageDownloadedHandler(QNetworkReply)));
+            this, SLOT(ImageDownloadedHandler(QNetworkReply*)));
 }
 
 httpManager::~httpManager()
@@ -12,12 +13,15 @@ httpManager::~httpManager()
     delete imageDownloadManager;
 }
 
-void httpManager::sendImageRequest()
+void httpManager::sendImageRequest(QString zip)
 {
     QNetworkRequest request;
-    request.setUrl(QUrl("https://spu.edu/depts/uc/VIS/images/Screen/JPEG/logo-spu-legacy-maroon.jpg"));
+    QString address = "https://dev.virtualearth.net/REST/V1/Imagery/Map/Road/"
+            + zip
+            + "/13?mapSize=600,300&mapLayer=TrafficFlow&format=png&key=At14ISaQrcssgnbusM6kAkN-0CIQJxhompctQATywuF-rk_-H9HJ41Ad7VKIPBjO";
+    request.setUrl(QUrl(address));
     imageDownloadManager->get(request);
-    qDebug() << "Image Reguest Sent to Address " << request.url();
+    qDebug() << "Image Request Sent to Address " << request.url();
 }
 
 void httpManager::ImageDownloadedHandler(QNetworkReply *reply)
@@ -32,5 +36,9 @@ void httpManager::ImageDownloadedHandler(QNetworkReply *reply)
     QPixmap *image = new QPixmap();
     image->loadFromData(reply->readAll());
 
+
     emit ImageReady(image);
 }
+
+
+// Delete this Comment later

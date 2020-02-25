@@ -43,5 +43,10 @@ void MainWindow::processImage(QPixmap *image)
 
 void MainWindow::on_imageDownloadButton_clicked()
 {
-    HTTPManager->sendImageRequest();
+    QString zip = ui->zipCodeInput->text();
+    qDebug() << zip;
+    HTTPManager->sendImageRequest(zip);
 }
+
+
+// Delete this Comment later
