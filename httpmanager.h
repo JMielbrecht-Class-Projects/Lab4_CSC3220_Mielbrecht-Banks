@@ -18,10 +18,12 @@ public:
 
 signals:
     void ImageReady(QPixmap *image);
+    void WeatherJsonReady(QJsonObject* json);
 
 public slots:
     void ImageDownloadedHandler(QNetworkReply * reply);
-    void WeatherJsonReady(QJsonObject* json);
+    void WeatherDownloadHandler(QNetworkReply *reply);
+    void processWeatherJson(QJsonObject* json);
 
 private:
     QNetworkAccessManager * imageDownloadManager;
