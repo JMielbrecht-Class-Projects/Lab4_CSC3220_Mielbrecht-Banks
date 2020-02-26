@@ -12,15 +12,15 @@ class httpManager : public QObject
 public:
     explicit httpManager(QObject *parent = nullptr);
     ~httpManager();
-
     void sendImageRequest();
     void sendWeatherRequest(QString zip);
-
+    void sendImageRequest(QString zip);
+    
 signals:
     void ImageReady(QPixmap *image);
     void WeatherJsonReady(QJsonObject* json);
 
-public slots:
+private slots:
     void ImageDownloadedHandler(QNetworkReply * reply);
     void WeatherDownloadHandler(QNetworkReply *reply);
     void processWeatherJson(QJsonObject* json);
@@ -33,3 +33,6 @@ private:
 };
 
 #endif // HTTPMANAGER_H
+
+
+// Delete this Comment later

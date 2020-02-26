@@ -1,6 +1,7 @@
 #include "httpmanager.h"
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <iostream>
 
 httpManager::httpManager(QObject *parent) : QObject(parent),
     imageDownloadManager(new QNetworkAccessManager),
@@ -18,10 +19,13 @@ httpManager::~httpManager()
     delete weatherAPIManager;
 }
 
-void httpManager::sendImageRequest()
+void httpManager::sendImageRequest(QString zip)
 {
     QNetworkRequest request;
-    request.setUrl(QUrl("https://spu.edu/depts/uc/VIS/images/Screen/JPEG/logo-spu-legacy-maroon.jpg"));
+    QString address = "https://dev.virtualearth.net/REST/V1/Imagery/Map/Road/"
+            + zip
+            + "/13?mapSize=600,300&mapLayer=TrafficFlow&format=png&key=At14ISaQrcssgnbusM6kAkN-0CIQJxhompctQATywuF-rk_-H9HJ41Ad7VKIPBjO";
+    request.setUrl(QUrl(address));
     imageDownloadManager->get(request);
     qDebug() << "Image Request Sent to Address " << request.url();
 }
@@ -36,6 +40,7 @@ void httpManager::sendWeatherRequest(QString zip)
     request.setUrl(QUrl(address));
     weatherAPIManager->get(request);
     qDebug() << "Weather Request Sent to Address" << request.url();
+
 }
 
 void httpManager::ImageDownloadedHandler(QNetworkReply *reply)
@@ -51,8 +56,10 @@ void httpManager::ImageDownloadedHandler(QNetworkReply *reply)
     image->loadFromData(reply->readAll());
     reply->deleteLater();
 
+
     emit ImageReady(image);
 }
+
 
 void httpManager::WeatherDownloadHandler(QNetworkReply *reply)
 {

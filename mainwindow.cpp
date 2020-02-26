@@ -53,7 +53,9 @@ void MainWindow::processWeatherJson(QJsonObject *json)
 
 void MainWindow::on_imageDownloadButton_clicked()
 {
-    HTTPManager->sendImageRequest();
+    QString zip = ui->zipCodeInput->text();
+    qDebug() << zip;
+    HTTPManager->sendImageRequest(zip);
 }
 
 void MainWindow::on_weatherDownloadButton_clicked()
