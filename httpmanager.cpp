@@ -8,9 +8,9 @@ httpManager::httpManager(QObject *parent) : QObject(parent),
     weatherAPIManager(new QNetworkAccessManager)
 {
     connect(imageDownloadManager, SIGNAL(finished(QNetworkReply*)),
-            this, SLOT(ImageDownloadedHandler(QNetworkReply)));
+            this, SLOT(ImageDownloadedHandler(QNetworkReply*)));
     connect(weatherAPIManager, SIGNAL(finished(QNetworkReply*)),
-            this, SLOT(weatherDownloadedHandler(QNetworkReply*)));
+            this, SLOT(WeatherDownloadHandler(QNetworkReply*)));
 }
 
 httpManager::~httpManager()
@@ -36,7 +36,7 @@ void httpManager::sendWeatherRequest(QString zip)
 
     QString address = "https://api.openweathermap.org/data/2.5/weather?zip="
             + zip
-            + "98119,us&units=imperial&appid=3ced85ae80d0f4c78c0ca224ddefcd0e";
+            + ",us&units=imperial&appid=3ced85ae80d0f4c78c0ca224ddefcd0e";
     request.setUrl(QUrl(address));
     weatherAPIManager->get(request);
     qDebug() << "Weather Request Sent to Address" << request.url();

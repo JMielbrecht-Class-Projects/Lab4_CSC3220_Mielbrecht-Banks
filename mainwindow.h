@@ -24,13 +24,13 @@ private slots:
     void processImage(QPixmap *);
     void processWeatherJson(QJsonObject* json);
     void on_imageDownloadButton_clicked();
-
     void on_weatherDownloadButton_clicked();
 
 private:
     Ui::MainWindow *ui;
     QTimer *timer;
     httpManager *HTTPManager;
+
 };
 #endif // MAINWINDOW_H
 
