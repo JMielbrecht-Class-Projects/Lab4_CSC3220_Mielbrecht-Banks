@@ -65,23 +65,23 @@
    <widget class="QPushButton" name="imageDownloadButton">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>90</y>
+      <x>170</x>
+      <y>140</y>
       <width>141</width>
       <height>31</height>
      </rect>
     </property>
     <property name="text">
-     <string>Image Download Display</string>
+     <string>Get Traffic Data</string>
     </property>
    </widget>
    <widget class="QLabel" name="imageLabel">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>120</y>
-      <width>261</width>
-      <height>141</height>
+      <x>450</x>
+      <y>230</y>
+      <width>351</width>
+      <height>331</height>
      </rect>
     </property>
     <property name="text">
@@ -91,8 +91,8 @@
    <widget class="QLineEdit" name="zipCodeInput">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>90</y>
+      <x>20</x>
+      <y>110</y>
       <width>113</width>
       <height>21</height>
      </rect>
@@ -101,10 +101,10 @@
    <widget class="QLabel" name="weatherLabel">
     <property name="geometry">
      <rect>
-      <x>380</x>
-      <y>140</y>
-      <width>331</width>
-      <height>81</height>
+      <x>480</x>
+      <y>90</y>
+      <width>281</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="text">
@@ -114,14 +114,162 @@
    <widget class="QPushButton" name="weatherDownloadButton">
     <property name="geometry">
      <rect>
-      <x>380</x>
-      <y>90</y>
+      <x>20</x>
+      <y>140</y>
       <width>141</width>
       <height>31</height>
      </rect>
     </property>
     <property name="text">
-     <string>Weather Download Button</string>
+     <string>Get Weather Report</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="weatherIconLabel">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>80</y>
+      <width>141</width>
+      <height>121</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>WeatherIcon</string>
+    </property>
+   </widget>
+   <widget class="QLCDNumber" name="london_HourLCD">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>10</y>
+      <width>51</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="digitCount">
+     <number>2</number>
+    </property>
+    <property name="value" stdset="0">
+     <double>22.000000000000000</double>
+    </property>
+   </widget>
+   <widget class="QLCDNumber" name="london_MinuteLCD">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>10</y>
+      <width>51</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="digitCount">
+     <number>2</number>
+    </property>
+    <property name="value" stdset="0">
+     <double>22.000000000000000</double>
+    </property>
+   </widget>
+   <widget class="QLCDNumber" name="london_SecondLCD">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>10</y>
+      <width>51</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="digitCount">
+     <number>2</number>
+    </property>
+    <property name="value" stdset="0">
+     <double>22.000000000000000</double>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>60</y>
+      <width>47</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>London</string>
+    </property>
+   </widget>
+   <widget class="QLCDNumber" name="paris_HourLCD">
+    <property name="geometry">
+     <rect>
+      <x>473</x>
+      <y>10</y>
+      <width>51</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="digitCount">
+     <number>2</number>
+    </property>
+    <property name="value" stdset="0">
+     <double>22.000000000000000</double>
+    </property>
+   </widget>
+   <widget class="QLCDNumber" name="paris_MinuteLCD">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>10</y>
+      <width>51</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="digitCount">
+     <number>2</number>
+    </property>
+    <property name="value" stdset="0">
+     <double>22.000000000000000</double>
+    </property>
+   </widget>
+   <widget class="QLCDNumber" name="paris_SecondLCD">
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>10</y>
+      <width>51</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="digitCount">
+     <number>2</number>
+    </property>
+    <property name="value" stdset="0">
+     <double>22.000000000000000</double>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>540</x>
+      <y>60</y>
+      <width>41</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Paris</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>90</y>
+      <width>251</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Enter Zip Code (for Weather and Traffic data):</string>
     </property>
    </widget>
   </widget>

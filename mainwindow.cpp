@@ -19,7 +19,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(HTTPManager, SIGNAL(ImageReady(QPixmap *)),
             this, SLOT(processImage(QPixmap *)));
-
+    connect(HTTPManager, SIGNAL(WeatherIconReady(QPixmap *)),
+            this, SLOT(processWeatherIcon(QPixmap *)));
     connect(HTTPManager, SIGNAL(WeatherJsonReady(QJsonObject* )),
             this, SLOT(processWeatherJson(QJsonObject* )));
 }
@@ -39,11 +40,36 @@ void MainWindow::setCurrentTime()
     ui->hourLCD->display(hour);
     ui->minuteLCD->display(minute);
     ui->secondLCD->display(second);
+
+    //LONDON
+    QTime london_time = QTime::currentTime().addSecs(28800);
+    QString london_hour = london_time.toString("hh");
+    QString london_minute = london_time.toString("mm");
+    QString london_second = london_time.toString("ss");
+
+    ui->london_HourLCD->display(london_hour);
+    ui->london_MinuteLCD->display(london_minute);
+    ui->london_SecondLCD->display(london_second);
+
+    //PARIS
+    QTime paris_time = QTime::currentTime().addSecs(32400);
+    QString paris_hour = paris_time.toString("hh");
+    QString paris_minute = paris_time.toString("mm");
+    QString paris_second = paris_time.toString("ss");
+
+    ui->paris_HourLCD->display(paris_hour);
+    ui->paris_MinuteLCD->display(paris_minute);
+    ui->paris_SecondLCD->display(paris_second);
 }
 
 void MainWindow::processImage(QPixmap *image)
 {
     ui->imageLabel->setPixmap(*image);
+}
+
+void MainWindow::processWeatherIcon(QPixmap *image)
+{
+    ui->weatherIconLabel->setPixmap(*image);
 }
 
 void MainWindow::processWeatherJson(QJsonObject *json)
@@ -62,6 +88,11 @@ void MainWindow::processWeatherJson(QJsonObject *json)
     qDebug() << temp_max;
 
     ui->weatherLabel->setText("Current weather: " + weather + ", temp: " + QString::number(temp));
+
+    //GRAB WEATHER ICON
+    QString icon = json->value("weather").toArray()[0].toObject()["icon"].toString();
+    HTTPManager->sendWeatherIconRequest(icon);
+
 
     /*
      * {
@@ -95,3 +126,4 @@ void MainWindow::on_weatherDownloadButton_clicked()
     qDebug() << zip;
     HTTPManager->sendWeatherRequest(zip);
 }
+
