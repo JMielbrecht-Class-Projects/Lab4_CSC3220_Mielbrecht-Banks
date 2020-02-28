@@ -11,6 +11,7 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLCDNumber>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
@@ -18,6 +19,7 @@
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QTableView>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -45,6 +47,7 @@ public:
     QLabel *label_2;
     QLabel *label_3;
     QLabel *label_4;
+    QTableView *tableView;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -81,13 +84,13 @@ public:
         zipCodeInput->setGeometry(QRect(20, 110, 113, 21));
         weatherLabel = new QLabel(centralwidget);
         weatherLabel->setObjectName(QString::fromUtf8("weatherLabel"));
-        weatherLabel->setGeometry(QRect(430, 90, 281, 21));
+        weatherLabel->setGeometry(QRect(460, 90, 281, 21));
         weatherDownloadButton = new QPushButton(centralwidget);
         weatherDownloadButton->setObjectName(QString::fromUtf8("weatherDownloadButton"));
         weatherDownloadButton->setGeometry(QRect(20, 140, 141, 31));
         weatherIconLabel = new QLabel(centralwidget);
         weatherIconLabel->setObjectName(QString::fromUtf8("weatherIconLabel"));
-        weatherIconLabel->setGeometry(QRect(330, 120, 141, 121));
+        weatherIconLabel->setGeometry(QRect(330, 110, 91, 71));
         london_HourLCD = new QLCDNumber(centralwidget);
         london_HourLCD->setObjectName(QString::fromUtf8("london_HourLCD"));
         london_HourLCD->setGeometry(QRect(290, 10, 51, 41));
@@ -129,7 +132,22 @@ public:
         label_3->setGeometry(QRect(20, 90, 251, 20));
         label_4 = new QLabel(centralwidget);
         label_4->setObjectName(QString::fromUtf8("label_4"));
-        label_4->setGeometry(QRect(330, 90, 101, 16));
+        label_4->setGeometry(QRect(330, 90, 131, 16));
+        QFont font;
+        font.setPointSize(12);
+        label_4->setFont(font);
+        tableView = new QTableView(centralwidget);
+        tableView->setObjectName(QString::fromUtf8("tableView"));
+        tableView->setGeometry(QRect(20, 190, 401, 361));
+        tableView->setAutoFillBackground(true);
+        tableView->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
+        tableView->setShowGrid(true);
+        tableView->horizontalHeader()->setVisible(false);
+        tableView->horizontalHeader()->setMinimumSectionSize(35);
+        tableView->horizontalHeader()->setDefaultSectionSize(200);
+        tableView->horizontalHeader()->setHighlightSections(true);
+        tableView->horizontalHeader()->setStretchLastSection(true);
+        tableView->verticalHeader()->setCascadingSectionResizes(true);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));

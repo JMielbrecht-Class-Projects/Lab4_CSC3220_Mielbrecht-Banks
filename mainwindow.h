@@ -6,6 +6,7 @@
 #include <QTime>
 #include <QLabel>
 #include "httpmanager.h"
+#include "tasklistmodel.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -32,6 +33,7 @@ private:
     Ui::MainWindow *ui;
     QTimer *timer;
     httpManager *HTTPManager;
+    TaskListModel *toDoList;
     bool weatherGrabbed;
     QString icon; //WEATHER ICON
 

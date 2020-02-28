@@ -18,11 +18,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     httpmanager.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    tasklistmodel.cpp
 
 HEADERS += \
     httpmanager.h \
-    mainwindow.h
+    mainwindow.h \
+    tasklistmodel.h
 
 FORMS += \
     mainwindow.ui

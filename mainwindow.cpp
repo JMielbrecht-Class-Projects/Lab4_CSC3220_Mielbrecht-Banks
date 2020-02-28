@@ -7,9 +7,12 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow),
       timer(new QTimer),
-      HTTPManager(new httpManager)
+      HTTPManager(new httpManager),
+      toDoList(new TaskListModel(this))
 {
     ui->setupUi(this);
+    ui->tableView->setModel(toDoList);
+    toDoList->openFile("tasks.csv");
     weatherGrabbed = false;
 
     connect(timer, SIGNAL(timeout()),
