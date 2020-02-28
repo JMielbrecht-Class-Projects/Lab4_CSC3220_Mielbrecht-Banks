@@ -44,6 +44,7 @@ public:
     QLCDNumber *paris_SecondLCD;
     QLabel *label_2;
     QLabel *label_3;
+    QLabel *label_4;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -74,19 +75,19 @@ public:
         imageDownloadButton->setGeometry(QRect(170, 140, 141, 31));
         imageLabel = new QLabel(centralwidget);
         imageLabel->setObjectName(QString::fromUtf8("imageLabel"));
-        imageLabel->setGeometry(QRect(450, 230, 351, 331));
+        imageLabel->setGeometry(QRect(440, 230, 351, 331));
         zipCodeInput = new QLineEdit(centralwidget);
         zipCodeInput->setObjectName(QString::fromUtf8("zipCodeInput"));
         zipCodeInput->setGeometry(QRect(20, 110, 113, 21));
         weatherLabel = new QLabel(centralwidget);
         weatherLabel->setObjectName(QString::fromUtf8("weatherLabel"));
-        weatherLabel->setGeometry(QRect(480, 90, 281, 21));
+        weatherLabel->setGeometry(QRect(430, 90, 281, 21));
         weatherDownloadButton = new QPushButton(centralwidget);
         weatherDownloadButton->setObjectName(QString::fromUtf8("weatherDownloadButton"));
         weatherDownloadButton->setGeometry(QRect(20, 140, 141, 31));
         weatherIconLabel = new QLabel(centralwidget);
         weatherIconLabel->setObjectName(QString::fromUtf8("weatherIconLabel"));
-        weatherIconLabel->setGeometry(QRect(330, 80, 141, 121));
+        weatherIconLabel->setGeometry(QRect(330, 120, 141, 121));
         london_HourLCD = new QLCDNumber(centralwidget);
         london_HourLCD->setObjectName(QString::fromUtf8("london_HourLCD"));
         london_HourLCD->setGeometry(QRect(290, 10, 51, 41));
@@ -126,6 +127,9 @@ public:
         label_3 = new QLabel(centralwidget);
         label_3->setObjectName(QString::fromUtf8("label_3"));
         label_3->setGeometry(QRect(20, 90, 251, 20));
+        label_4 = new QLabel(centralwidget);
+        label_4->setObjectName(QString::fromUtf8("label_4"));
+        label_4->setGeometry(QRect(330, 90, 101, 16));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -151,6 +155,7 @@ public:
         label->setText(QCoreApplication::translate("MainWindow", "London", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "Paris", nullptr));
         label_3->setText(QCoreApplication::translate("MainWindow", "Enter Zip Code (for Weather and Traffic data):", nullptr));
+        label_4->setText(QCoreApplication::translate("MainWindow", "Weather Report: ", nullptr));
     } // retranslateUi
 
 };

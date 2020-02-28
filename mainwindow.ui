@@ -78,7 +78,7 @@
    <widget class="QLabel" name="imageLabel">
     <property name="geometry">
      <rect>
-      <x>450</x>
+      <x>440</x>
       <y>230</y>
       <width>351</width>
       <height>331</height>
@@ -101,7 +101,7 @@
    <widget class="QLabel" name="weatherLabel">
     <property name="geometry">
      <rect>
-      <x>480</x>
+      <x>430</x>
       <y>90</y>
       <width>281</width>
       <height>21</height>
@@ -128,7 +128,7 @@
     <property name="geometry">
      <rect>
       <x>330</x>
-      <y>80</y>
+      <y>120</y>
       <width>141</width>
       <height>121</height>
      </rect>
@@ -270,6 +270,19 @@
     </property>
     <property name="text">
      <string>Enter Zip Code (for Weather and Traffic data):</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>90</y>
+      <width>101</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Weather Report: </string>
     </property>
    </widget>
   </widget>

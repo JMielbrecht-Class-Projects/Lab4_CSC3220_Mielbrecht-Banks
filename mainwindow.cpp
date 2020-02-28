@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
       HTTPManager(new httpManager)
 {
     ui->setupUi(this);
+    weatherGrabbed = false;
 
     connect(timer, SIGNAL(timeout()),
             this, SLOT(setCurrentTime()));
@@ -23,6 +24,14 @@ MainWindow::MainWindow(QWidget *parent)
             this, SLOT(processWeatherIcon(QPixmap *)));
     connect(HTTPManager, SIGNAL(WeatherJsonReady(QJsonObject* )),
             this, SLOT(processWeatherJson(QJsonObject* )));
+
+    ui->weatherLabel->setText("");
+    ui->weatherIconLabel->setText("");
+    ui->imageLabel->setText("");
+    ui->zipCodeInput->setText("98119");
+
+    //WEATHER GRAB
+
 }
 
 MainWindow::~MainWindow()
@@ -60,6 +69,11 @@ void MainWindow::setCurrentTime()
     ui->paris_HourLCD->display(paris_hour);
     ui->paris_MinuteLCD->display(paris_minute);
     ui->paris_SecondLCD->display(paris_second);
+
+    //REFRESH WEATHER EVERY 5 SECONDS
+    if(time.elapsed() % 5000 == 0){
+        refreshWeather();
+    }
 }
 
 void MainWindow::processImage(QPixmap *image)
@@ -90,10 +104,11 @@ void MainWindow::processWeatherJson(QJsonObject *json)
     ui->weatherLabel->setText("Current weather: " + weather + ", temp: " + QString::number(temp));
 
     //GRAB WEATHER ICON
-    QString icon = json->value("weather").toArray()[0].toObject()["icon"].toString();
+    icon = json->value("weather").toArray()[0].toObject()["icon"].toString();
     HTTPManager->sendWeatherIconRequest(icon);
 
-
+    //Success -- weather was grabbed
+    weatherGrabbed = true;
     /*
      * {
      * "coord":{"lon":-122.36,"lat":47.64},
@@ -125,5 +140,14 @@ void MainWindow::on_weatherDownloadButton_clicked()
     QString zip = ui->zipCodeInput->text();
     qDebug() << zip;
     HTTPManager->sendWeatherRequest(zip);
+}
+
+void MainWindow::refreshWeather()
+{
+    if(weatherGrabbed==true){
+        QString zip = ui->zipCodeInput->text();
+         HTTPManager->sendWeatherIconRequest(icon);
+         HTTPManager->sendWeatherRequest(zip);
+    }
 }
 

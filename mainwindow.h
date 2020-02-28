@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QTimer>
 #include <QTime>
-
+#include <QLabel>
 #include "httpmanager.h"
 
 QT_BEGIN_NAMESPACE
@@ -26,12 +26,14 @@ private slots:
     void processWeatherJson(QJsonObject* json);
     void on_imageDownloadButton_clicked();
     void on_weatherDownloadButton_clicked();
-
+    void refreshWeather();
 
 private:
     Ui::MainWindow *ui;
     QTimer *timer;
     httpManager *HTTPManager;
+    bool weatherGrabbed;
+    QString icon; //WEATHER ICON
 
 };
 #endif // MAINWINDOW_H
